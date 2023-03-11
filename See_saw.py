@@ -11,7 +11,7 @@ increase = threading.Semaphore() #default : Semaphore(1)
 decrease = threading.Semaphore(0)
 
 #going up function
-def GoingUp():
+def going_up():
     global swetha_Height
     global binu_Height
     global swetha_Velocity
@@ -33,12 +33,12 @@ def GoingUp():
             decrease.release()
             
 #going down function
-def GoingDown():
+def going_down():
     global swetha_Height
     global binu_Height
     global swetha_Velocity
     global binu_Velocity
-    for i in range(1):
+    for _ in range(1):
         while binu_Height > 1:
             decrease.acquire()
             #to increase the count of the semaphore by 1 in case the count is zero.
@@ -54,11 +54,11 @@ def GoingDown():
             increase.release()
             
 if __name__ == '__main__':
-    t1 = threading.Thread(target=GoingUp)
+    t1 = threading.Thread(target=going_up)
     #calling the function goingup() using threads
     t1.start()
     #Thread activity t1 is started by calling the start() method
-    t2 = threading.Thread(target=GoingDown)
+    t2 = threading.Thread(target=going_down)
     #calling the function goingup() using threads
     t2.start()
     #Thread activity t2 is started by calling the start() method
